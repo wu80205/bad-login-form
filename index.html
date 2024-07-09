@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Worst Login Form</title>
+    <style>
+        body {
+            background-color: #ff00ff; /* Because why not? */
+            font-family: Comic Sans MS, cursive;
+        }
+        .login-container {
+            width: 200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.5);
+            border: 10px solid #000;
+            border-radius: 50px;
+        }
+        .input-label {
+            color: #000;
+            font-size: 12px;
+        }
+        .input-field {
+            width: 100%;
+            padding: 5px;
+            margin-bottom: 10px;
+            border: 2px solid #666;
+            border-radius: 5px;
+            background-color: #ffcc00;
+        }
+        .login-button {
+            width: 100%;
+            padding: 10px;
+            background-color: #ff0000;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+        .login-button:hover {
+        opacity: 0; /* Set opacity to 0 on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h1 style="color: #000;">Welcome to Our Terrible Site</h1>
+        <form action="https://www.example.com/login" method="post">
+            <label class="input-label" for="username">Username:</label>
+            <input class="input-field" type="text" id="username" name="username" placeholder="Enter your username">
+            <label class="input-label" for="password">Password:</label>
+            <input class="input-field" type="password" id="password" name="password" placeholder="Enter your password">
+            <button class="login-button" type="submit">Login</button>
+        </form>
+    </div>
+</body>
+</html>
