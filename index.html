@@ -84,15 +84,24 @@
             restitution: 1
         };
 
-        function addLetter(x, y, letter) {
+        function addLetter(letter) {
+            const maxX = 600; // Adjust based on your canvas size
+            const x = Math.floor(Math.random() * maxX);
+            const y = 50;
             const letterBody = Bodies.circle(x, y, 20, letterOptions);
             letterBody.label = letter; // Assign the letter as a label
             World.add(engine.world, letterBody);
         }
 
+        function getRandomCoordinates(maxX, maxY) {
+            const x = Math.floor(Math.random() * maxX);
+            const y = Math.floor(Math.random() * maxY);
+            return x, y };
+        }
+
         // Example: Add some falling letters
-        addLetter(200, 50, 'A');
-        addLetter(250, 50, 'B');
+        addLetter('A');
+        addLetter('B');
         // ... Add more letters ...
 
         // Run the engine
@@ -101,5 +110,6 @@
         // Run the renderer
         Render.run(render);
     </script>
+    <button onclick=""></button>
 </body>
 </html>
