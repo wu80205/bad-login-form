@@ -3,63 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gamble Login Form with Plinko</title>
+    <title>Falling Letters Plinko</title>
     <style>
-        /* Add your custom styles here */
+        /* Style the Plinko board */
         .plinko-board {
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 200px;
+            height: 300px;
             background-color: #f0f0f0;
         }
-        .plinko-slot {
-            width: 30px;
-            height: 30px;
+
+        /* Style the pegs */
+        .peg {
+            width: 20px;
+            height: 20px;
             background-color: #0074D9;
             border-radius: 50%;
-            margin: 0 5px;
+            margin: 0 10px;
         }
     </style>
 </head>
 <body>
-    <h1>Gamble Login Form with Plinko</h1>
-    <form id="loginForm">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" readonly>
-        <button onclick="gambleLetter('username')">Gamble</button>
-
-        <br>
-
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" readonly>
-        <button onclick="gambleLetter('password')">Gamble</button>
-
-        <br>
-
-        <input type="submit" value="Login">
-    </form>
-
+    <h1>Falling Letters Plinko</h1>
     <div class="plinko-board">
-        <div class="plinko-slot"></div>
-        <div class="plinko-slot"></div>
-        <!-- Add more slots as needed -->
+        <!-- Add pegs (you can adjust the number and spacing) -->
+        <div class="peg"></div>
+        <div class="peg"></div>
+        <div class="peg"></div>
+        <!-- ... Add more pegs ... -->
     </div>
 
     <script>
-        const alphabet = 'abcdefghijklmnopqrstuvwxyz';
+        // Simulate falling letters (you can replace this with actual letters)
+        const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
 
         function getRandomLetter() {
-            const randomIndex = Math.floor(Math.random() * alphabet.length);
-            return alphabet[randomIndex];
+            const randomIndex = Math.floor(Math.random() * letters.length);
+            return letters[randomIndex];
         }
 
-        function gambleLetter(inputId) {
-            const inputElement = document.getElementById(inputId);
-            const currentText = inputElement.value;
-            const newLetter = getRandomLetter();
-            inputElement.value = currentText + newLetter;
+        function createFallingLetter() {
+            const letter = getRandomLetter();
+            const letterElement = document.createElement('div');
+            letterElement.classList.add('falling-letter');
+            letterElement.textContent = letter;
+            document.body.appendChild(letterElement);
+
+            // Animate the falling motion (you can enhance this)
+            // ...
+
+            // Randomize starting position
+            const startX = Math.random() * window.innerWidth;
+            letterElement.style.left = `${startX}px`;
         }
+
+        // Create falling letters (you can trigger this as needed)
+        createFallingLetter();
     </script>
 </body>
 </html>
