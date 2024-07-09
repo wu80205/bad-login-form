@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plinko Login Form</title>
+    <title>Plinko Login Form with Animations</title>
     <style>
         /* Add some basic styling for the form */
         body {
@@ -14,14 +14,23 @@
             padding: 10px;
             margin: 10px;
         }
+        .slot {
+            background-color: #f0f0f0;
+            padding: 10px;
+            margin: 10px;
+            transition: transform 0.5s ease; /* Add a smooth transition effect */
+        }
+        .slot:hover {
+            transform: scale(1.1); /* Enlarge the slot on hover */
+        }
     </style>
 </head>
 <body>
     <h1>Plinko Login Form</h1>
     <input type="text" id="inputField" placeholder="Enter your username or password">
     <button onclick="dropLetter()">Drop Letter</button>
-    <div id="usernameSlot" style="background-color: #f0f0f0; padding: 10px; margin: 10px;"></div>
-    <div id="passwordSlot" style="background-color: #f0f0f0; padding: 10px; margin: 10px;"></div>
+    <div id="usernameSlot" class="slot"></div>
+    <div id="passwordSlot" class="slot"></div>
 
     <script>
         const usernameSlot = document.getElementById('usernameSlot');
