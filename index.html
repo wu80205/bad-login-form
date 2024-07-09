@@ -4,6 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Falling Letters Plinko</title>
+    <style>
+        /* Set a white background for the canvas */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: white;
+        }
+        #can {
+            width: 100%;
+            height: 100vh;
+        }
+    </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.17.1/matter.min.js"></script>
 </head>
 <body>
@@ -31,7 +43,7 @@
             const peg = Bodies.circle(x, y, 10, {
                 isStatic: true, // Make the peg immovable
                 render: {
-                    fillStyle: 'black' // Set the color of the peg
+                    fillStyle: 'white' // Set the color of the peg
                 }
             });
 
@@ -58,8 +70,8 @@
         }
 
         // Example: Add some falling letters
-        addLetter(400, 50, 'A');
-        addLetter(450, 50, 'B');
+        addLetter(200, 50, 'A');
+        addLetter(250, 50, 'B');
         // ... Add more letters ...
 
         // Run the engine
