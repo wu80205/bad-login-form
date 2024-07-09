@@ -4,62 +4,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Falling Letters Plinko</title>
-    <style>
-        /* Style the Plinko board */
-        .plinko-board {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 300px;
-            background-color: #f0f0f0;
-        }
-
-        /* Style the pegs */
-        .peg {
-            width: 20px;
-            height: 20px;
-            background-color: #0074D9;
-            border-radius: 50%;
-            margin: 0 10px;
-        }
-    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.17.1/matter.min.js"></script>
 </head>
 <body>
-    <h1>Falling Letters Plinko</h1>
-    <div class="plinko-board">
-        <!-- Add pegs (you can adjust the number and spacing) -->
-        <div class="peg"></div>
-        <div class="peg"></div>
-        <div class="peg"></div>
-        <!-- ... Add more pegs ... -->
-    </div>
+    <div id="can"></div>
 
     <script>
-        // Simulate falling letters (you can replace this with actual letters)
-        const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
+        const { Engine, Render, World, Bodies, Body } = Matter;
 
-        function getRandomLetter() {
-            const randomIndex = Math.floor(Math.random() * letters.length);
-            return letters[randomIndex];
+        // Create an engine
+        const engine = Engine.create();
+
+        // Create a renderer
+        const render = Render.create({
+            element: document.getElementById('can'),
+            engine: engine,
+            options: {
+                width: 800,
+                height: 600,
+                wireframes: false // Set to true for wireframe view
+            }
+        });
+
+        // Create pegs (flanges)
+        const makePeg = (x, y) => {
+            const peg = Bodies.circle(x, y, 10, {
+                isStatic: true, // Make the peg immovable
+                render: {
+                    fillStyle: 'black' // Set the color of the peg
+                }
+            });
+
+            // Add the peg to the world
+            World.add(engine.world, peg);
+        };
+
+        // Example: Create some pegs
+        makePeg(100, 200); // Adjust coordinates as needed
+        makePeg(200, 200);
+        makePeg(300, 200);
+        // ... Add more pegs ...
+
+        // Create falling letters (disk)
+        const letterOptions = {
+            friction: 0.2,
+            restitution: 1
+        };
+
+        function addLetter(x, y, letter) {
+            const letterBody = Bodies.circle(x, y, 20, letterOptions);
+            letterBody.label = letter; // Assign the letter as a label
+            World.add(engine.world, letterBody);
         }
 
-        function createFallingLetter() {
-            const letter = getRandomLetter();
-            const letterElement = document.createElement('div');
-            letterElement.classList.add('falling-letter');
-            letterElement.textContent = letter;
-            document.body.appendChild(letterElement);
+        // Example: Add some falling letters
+        addLetter(400, 50, 'A');
+        addLetter(450, 50, 'B');
+        // ... Add more letters ...
 
-            // Animate the falling motion (you can enhance this)
-            // ...
+        // Run the engine
+        Engine.run(engine);
 
-            // Randomize starting position
-            const startX = Math.random() * window.innerWidth;
-            letterElement.style.left = `${startX}px`;
-        }
-
-        // Create falling letters (you can trigger this as needed)
-        createFallingLetter();
+        // Run the renderer
+        Render.run(render);
     </script>
 </body>
 </html>
