@@ -3,76 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plinko Login Form</title>
+    <title>Gamble Login Form with Plinko</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
+        /* Add your custom styles here */
         .plinko-board {
-            position: relative;
-            width: 400px;
-            height: 400px;
-            background-color: #f0f0f0;
-            border: 2px solid #333;
-            overflow: hidden;
-        }
-        .slot {
-            position: absolute;
-            bottom: 0;
-            width: 50px;
-            height: 50px;
-            background-color: #ddd;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-weight: bold;
+            height: 200px;
+            background-color: #f0f0f0;
         }
-        #usernameSlot {
-            left: 20%;
-        }
-        #passwordSlot {
-            right: 20%;
-        }
-        .ball {
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 20px;
-            height: 20px;
+        .plinko-slot {
+            width: 30px;
+            height: 30px;
             background-color: #0074D9;
             border-radius: 50%;
-            transition: transform 0.5s ease;
+            margin: 0 5px;
         }
     </style>
 </head>
 <body>
+    <h1>Gamble Login Form with Plinko</h1>
+    <form id="loginForm">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" readonly>
+        <button onclick="gambleLetter('username')">Gamble</button>
+
+        <br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" readonly>
+        <button onclick="gambleLetter('password')">Gamble</button>
+
+        <br>
+
+        <input type="submit" value="Login">
+    </form>
+
     <div class="plinko-board">
-        <div class="slot" id="usernameSlot">Username</div>
-        <div class="slot" id="passwordSlot">Password</div>
-        <div class="ball"></div>
+        <div class="plinko-slot"></div>
+        <div class="plinko-slot"></div>
+        <!-- Add more slots as needed -->
     </div>
 
     <script>
-        const ball = document.querySelector('.ball');
-        const usernameSlot = document.getElementById('usernameSlot');
-        const passwordSlot = document.getElementById('passwordSlot');
+        const alphabet = 'abcdefghijklmnopqrstuvwxyz';
 
-        function dropBall() {
-            // Simulate the Plinko effect by randomly choosing a slot
-            const randomSlot = Math.random() < 0.5 ? usernameSlot : passwordSlot;
-
-            // Move the ball to the chosen slot
-            ball.style.transform = `translateX(${randomSlot.offsetLeft}px)`;
+        function getRandomLetter() {
+            const randomIndex = Math.floor(Math.random() * alphabet.length);
+            return alphabet[randomIndex];
         }
 
-        // Trigger the Plinko effect when the page loads (for demonstration)
-        dropBall();
+        function gambleLetter(inputId) {
+            const inputElement = document.getElementById(inputId);
+            const currentText = inputElement.value;
+            const newLetter = getRandomLetter();
+            inputElement.value = currentText + newLetter;
+        }
     </script>
 </body>
 </html>
