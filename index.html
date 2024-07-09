@@ -3,51 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plinko Login Form with Animations</title>
+    <title>Plinko Login Form</title>
     <style>
-        /* Add some basic styling for the form */
         body {
             font-family: Arial, sans-serif;
-            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
         }
-        input {
-            padding: 10px;
-            margin: 10px;
+        .plinko-board {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            background-color: #f0f0f0;
+            border: 2px solid #333;
+            overflow: hidden;
         }
         .slot {
-            background-color: #f0f0f0;
-            padding: 10px;
-            margin: 10px;
-            transition: transform 0.5s ease; /* Add a smooth transition effect */
+            position: absolute;
+            bottom: 0;
+            width: 50px;
+            height: 50px;
+            background-color: #ddd;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
         }
-        .slot:hover {
-            transform: scale(1.1); /* Enlarge the slot on hover */
+        #usernameSlot {
+            left: 20%;
+        }
+        #passwordSlot {
+            right: 20%;
+        }
+        .ball {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background-color: #0074D9;
+            border-radius: 50%;
+            transition: transform 0.5s ease;
         }
     </style>
 </head>
 <body>
-    <h1>Plinko Login Form</h1>
-    <input type="text" id="inputField" placeholder="Enter your username or password">
-    <button onclick="dropLetter()">Drop Letter</button>
-    <div id="usernameSlot" class="slot"></div>
-    <div id="passwordSlot" class="slot"></div>
+    <div class="plinko-board">
+        <div class="slot" id="usernameSlot">Username</div>
+        <div class="slot" id="passwordSlot">Password</div>
+        <div class="ball"></div>
+    </div>
 
     <script>
+        const ball = document.querySelector('.ball');
         const usernameSlot = document.getElementById('usernameSlot');
         const passwordSlot = document.getElementById('passwordSlot');
 
-        function dropLetter() {
-            const inputField = document.getElementById('inputField');
-            const letter = inputField.value.trim().charAt(0).toUpperCase();
+        function dropBall() {
+            // Simulate the Plinko effect by randomly choosing a slot
+            const randomSlot = Math.random() < 0.5 ? usernameSlot : passwordSlot;
 
-            if (letter) {
-                // Simulate the Plinko effect by randomly choosing a slot
-                const randomSlot = Math.random() < 0.5 ? usernameSlot : passwordSlot;
-
-                // Append the letter to the chosen slot
-                randomSlot.innerHTML += letter;
-            }
+            // Move the ball to the chosen slot
+            ball.style.transform = `translateX(${randomSlot.offsetLeft}px)`;
         }
+
+        // Trigger the Plinko effect when the page loads (for demonstration)
+        dropBall();
     </script>
 </body>
 </html>
