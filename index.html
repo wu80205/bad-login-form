@@ -5,55 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Plinko Login Form</title>
     <style>
-        /* Add your own styling here */
+        /* Add some basic styling for the form */
         body {
             font-family: Arial, sans-serif;
             text-align: center;
         }
-        #plinko-board {
-            /* Your Plinko board styling */
-        }
-        #username-slot, #password-slot {
-            color: #ffffff;
-            border: 1px solid black;
+        input {
+            padding: 10px;
+            margin: 10px;
         }
     </style>
 </head>
 <body>
     <h1>Plinko Login Form</h1>
-    <input type="text" id="username-input" placeholder="Enter your username">
-    <div id="plinko-board">
-        <!-- Plinko board with pegs -->
-        <!-- You can create this using CSS or SVG -->
-    </div>
-    <div id="username-slot">Username Slot</div>
-    <div id="password-slot">Password Slot</div>
+    <input type="text" id="inputField" placeholder="Enter your username or password">
+    <button onclick="dropLetter()">Drop Letter</button>
+    <div id="usernameSlot" style="background-color: #f0f0f0; padding: 10px; margin: 10px;"></div>
+    <div id="passwordSlot" style="background-color: #f0f0f0; padding: 10px; margin: 10px;"></div>
 
     <script>
-        // JavaScript logic for Plinko interaction
-        const usernameInput = document.getElementById('username-input');
-        const usernameSlot = document.getElementById('username-slot');
-        const passwordSlot = document.getElementById('password-slot');
+        const usernameSlot = document.getElementById('usernameSlot');
+        const passwordSlot = document.getElementById('passwordSlot');
 
-        // Event listener for input changes
-        usernameInput.addEventListener('input', () => {
-            // Update the letters falling from the top
-            // You can animate these letters using CSS transitions
-            const letters = usernameInput.value.split('');
-            // Simulate Plinko randomness
-            const randomIndex = Math.floor(Math.random() * letters.length);
-            const randomLetter = letters[randomIndex];
-            // Display the random letter on the Plinko board
-            // (You can create a visual representation for this)
-            console.log(`Random letter: ${randomLetter}`);
-        });
+        function dropLetter() {
+            const inputField = document.getElementById('inputField');
+            const letter = inputField.value.trim().charAt(0).toUpperCase();
 
-        // Event listener for successful login (when letters match)
-        // You'll need to implement this based on your actual authentication logic
-        function handleSuccessfulLogin() {
-            console.log('Login successful!');
-            // Redirect to the user's dashboard or homepage
-            // window.location.href = 'dashboard.html';
+            if (letter) {
+                // Simulate the Plinko effect by randomly choosing a slot
+                const randomSlot = Math.random() < 0.5 ? usernameSlot : passwordSlot;
+
+                // Append the letter to the chosen slot
+                randomSlot.innerHTML += letter;
+            }
         }
     </script>
 </body>
