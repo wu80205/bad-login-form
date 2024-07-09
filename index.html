@@ -51,6 +51,28 @@
             World.add(engine.world, peg);
         };
 
+        const box = Bodies.rectangle(canvasWidth / 2, canvasHeight - 20, 200, 40, {
+            isStatic: true,
+            render: {
+                fillStyle: 'rgba(255, 0, 0, 0.5)' // Customize the box color
+            }
+        });
+        World.add(engine.world, box);
+
+        function checkLetterCollision(letterBody) {
+            const letterPosition = letterBody.position;
+            if (letterPosition.y > canvasHeight - 20) {
+                // Letter landed in the box
+                const determinedLetter = letterBody.label;
+                console.log(`Determined letter: ${determinedLetter}`);
+                // Display the result (e.g., update a DOM element)
+            }
+        }
+
+        for (const letterBody of fallingLetters) {
+            checkLetterCollision(letterBody);
+        }
+
         // Example: Create some pegs
         makePeg(100, 200);
         makePeg(200, 200);
