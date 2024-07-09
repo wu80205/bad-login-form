@@ -93,12 +93,6 @@
             World.add(engine.world, letterBody);
         }
 
-        function getRandomCoordinates(maxX, maxY) {
-            const x = Math.floor(Math.random() * maxX);
-            const y = Math.floor(Math.random() * maxY);
-            return x, y };
-        }
-
         // Example: Add some falling letters
         addLetter('A');
         addLetter('B');
@@ -110,6 +104,7 @@
         // Run the renderer
         Render.run(render);
     </script>
-    <button onclick=""></button>
+    <button onclick="addLetter('A')">A</button>
+    <button onclick="addLetter('B')">B</button>
 </body>
 </html>
