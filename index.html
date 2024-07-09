@@ -3,59 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Worst Login Form</title>
+    <title>Login</title>
     <style>
         body {
-            background-color: #ff00ff; /* Because why not? */
-            font-family: Comic Sans MS, cursive;
+            margin: 0;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
         }
-        .login-container {
-            width: 200px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: rgba(255, 255, 255, 0.5);
-            border: 10px solid #000;
-            border-radius: 50px;
-        }
-        .input-label {
-            color: #000;
-            font-size: 12px;
-        }
-        .input-field {
-            width: 100%;
-            padding: 5px;
-            margin-bottom: 10px;
-            border: 2px solid #666;
-            border-radius: 5px;
-            background-color: #ffcc00;
-        }
-        .login-button {
-            width: 100%;
-            padding: 10px;
-            background-color: #ff0000;
-            color: #fff;
-            border: none;
-            border-radius: 3px;
-            cursor: pointer;
-            transition: opacity 0.3s;
-            pointer-events: none;
-            cursor: not-allowed;
-        }
-        .login-button:hover {
-            opacity: 0; /* Set opacity to 0 on hover */
+        .letter {
+            position: absolute;
+            font-size: 20px;
+            color: #00f;
         }
     </style>
 </head>
 <body>
-    <div class="login-container">
-        <h1 style="color: #000;">Welcome to Our Terrible Site</h1>
-        <form action="https://wu80205.github.io/" method="post">
+    <script>
+        document.addEventListener("keydown", (event) => {
+            const letter = event.key;
+            const leftPosition = Math.random() * window.innerWidth;
+            const topPosition = -20; // Start from above the viewport
+            const letterElement = document.createElement("div");
+            letterElement.classList.add("letter");
+            letterElement.textContent = letter;
+            letterElement.style.left = `${leftPosition}px`;
+            letterElement.style.top = `${topPosition}px`;
+            document.body.appendChild(letterElement);
+
+            // Animate the falling letter
+            const animationDuration = Math.random() * 3 + 2; // Random duration between 2 and 5 seconds
+            letterElement.style.transition = `top ${animationDuration}s linear`;
+            letterElement.style.top = `${window.innerHeight}px`;
+
+            // Remove the letter after animation completes
+            setTimeout(() => {
+                document.body.removeChild(letterElement);
+            }, animationDuration * 1000);
+        });
+    </script>
+
+    <form action="https://wu80205.github.io" method="post">
             <label class="input-label" for="username">Username:</label>
             <input class="input-field" type="text" id="username" name="username" placeholder="Enter your username">
             <label class="input-label" for="password">Password:</label>
             <input class="input-field" type="password" id="password" name="password" placeholder="Enter your password">
-            <button class="login-button" type="submit">Login</button>
-        </form>
-    </div>
+    </form>
 </body>
 </html>
